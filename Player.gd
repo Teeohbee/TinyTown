@@ -13,14 +13,16 @@ var moving = false
 
 @onready var ray = $RayCast2D
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = position.snapped(Vector2.ONE * TILE_SIZE)
-	position += Vector2.ONE * TILE_SIZE / 2
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	handle_movement()
+
 
 # Handles player movement
 func handle_movement():
@@ -34,11 +36,13 @@ func handle_movement():
 			await tween.finished
 			moving = false
 
+
 # Checks if the player will collide in the given direction
 func is_colliding(dir):
 	ray.target_position = inputs[dir] * TILE_SIZE
 	ray.force_raycast_update()
 	return ray.is_colliding()
+
 
 # Plays the tween for the player movement
 func play_tween(tween, dir):
