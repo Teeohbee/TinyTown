@@ -1,0 +1,178 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhkd51qijugrl"]
+
+[ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://tile_0109.png" id="1_t1ok4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t85v"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuqch"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jcjq7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack"
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Defend"
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Run"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 464.0
+offset_bottom = 208.0
+scale = Vector2(16, 16)
+texture = ExtResource("1_t1ok4")
+
+[node name="PlayerHealth" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 25.0
+offset_right = 385.0
+offset_bottom = 125.0
+
+[node name="Label" type="Label" parent="PlayerHealth"]
+layout_mode = 2
+text = "Player"
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerHealth"]
+custom_minimum_size = Vector2(350, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4t85v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yuqch")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlayerHealth/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -11.5
+offset_right = 32.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "HP: 5/10"
+
+[node name="EnemyHealth" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -385.0
+offset_top = 25.0
+offset_right = -35.0
+offset_bottom = 125.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="EnemyHealth"]
+layout_mode = 2
+text = "Enemy"
+
+[node name="ProgressBar" type="ProgressBar" parent="EnemyHealth"]
+custom_minimum_size = Vector2(350, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4t85v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yuqch")
+max_value = 10.0
+step = 1.0
+value = 6.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EnemyHealth/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -11.5
+offset_right = 32.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "HP: 6/10"

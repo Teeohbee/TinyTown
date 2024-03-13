@@ -22,6 +22,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	handle_movement()
+	if Input.is_action_just_pressed("ui_accept"):
+		SceneTransition.change_scene_to_file("res://battle.tscn")
 
 
 # Handles player movement
