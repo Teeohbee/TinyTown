@@ -31,12 +31,15 @@ func handle_movement():
 	if moving:
 		return
 	for dir in inputs.keys():
-		if Input.is_action_pressed(dir) and not is_colliding(dir):
-			var tween = create_tween()
-			play_tween(tween, dir)
-			moving = true
-			await tween.finished
-			moving = false
+		if Input.is_action_pressed(dir):
+			if is_colliding(dir):
+				$AnimationPlayer.play("bump_" + dir)
+			else:
+				var tween = create_tween()
+				play_tween(tween, dir)
+				moving = true
+				await tween.finished
+				moving = false
 
 
 # Checks if the player will collide in the given direction
