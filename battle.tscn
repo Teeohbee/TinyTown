@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhkd51qijugrl"]
+[gd_scene load_steps=13 format=3 uid="uid://bhkd51qijugrl"]
 
 [ext_resource type="Script" path="res://battle.gd" id="1_37juv"]
 [ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://tile_0109.png" id="1_t1ok4"]
@@ -14,6 +14,45 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oamix"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg0ci"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysjfu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kud70"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_1uaxp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(415, 127)]
+}
 
 [sub_resource type="Animation" id="Animation_2b4to"]
 resource_name = "intro"
@@ -41,33 +80,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(450, 190), Vector2(450, 190), Vector2(415, 127), Vector2(450, 190), Vector2(415, 127), Vector2(450, 190)]
-}
-
-[sub_resource type="Animation" id="Animation_1uaxp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(415, 127)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t2xde"]
@@ -129,27 +141,45 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jcjq7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="ActionButtons" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(1100, 150)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -15.5
+offset_right = 85.0
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+[node name="Attack" type="Button" parent="Panel/ActionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oamix")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qg0ci")
 text = "Attack"
 
-[node name="Button2" type="Button" parent="Panel/HBoxContainer"]
+[node name="Defend" type="Button" parent="Panel/ActionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
 text = "Defend"
 
-[node name="Button3" type="Button" parent="Panel/HBoxContainer"]
+[node name="Run" type="Button" parent="Panel/ActionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
 text = "Run"
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -244,3 +274,5 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "HP: 6/10"
+
+[connection signal="pressed" from="Panel/ActionButtons/Run" to="." method="_on_run_pressed"]

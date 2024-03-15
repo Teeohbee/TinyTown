@@ -4,6 +4,7 @@ extends Area2D
 const TILE_SIZE = 16
 const ANIMATION_SPEED = 4
 const TWEEN_DURATION = 1.0
+const BATTLE_SCENE_PATH = "res://battle.tscn"
 
 # Variables
 var inputs = {
@@ -23,7 +24,7 @@ func _ready():
 func _process(_delta):
 	handle_movement()
 	if Input.is_action_just_pressed("ui_accept"):
-		SceneTransition.change_scene_to_file("res://battle.tscn")
+		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 
 
 # Handles player movement
@@ -35,11 +36,7 @@ func handle_movement():
 			if is_colliding(dir):
 				$AnimationPlayer.play("bump_" + dir)
 			else:
-				var tween = create_tween()
-				play_tween(tween, dir)
-				moving = true
-				await tween.finished
-				moving = false
+				move(dir)
 
 
 # Checks if the player will collide in the given direction
@@ -47,6 +44,15 @@ func is_colliding(dir):
 	ray.target_position = inputs[dir] * TILE_SIZE
 	ray.force_raycast_update()
 	return ray.is_colliding()
+
+
+# Moves the player in the given direction using a tween
+func move(dir):
+	var tween = create_tween()
+	play_tween(tween, dir)
+	moving = true
+	await tween.finished
+	moving = false
 
 
 # Plays the tween for the player movement
