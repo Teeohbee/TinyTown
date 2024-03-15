@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhkd51qijugrl"]
+[gd_scene load_steps=14 format=3 uid="uid://bhkd51qijugrl"]
 
 [ext_resource type="Script" path="res://battle.gd" id="1_37juv"]
 [ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://tile_0109.png" id="1_t1ok4"]
+[ext_resource type="Script" path="res://enemy.gd" id="3_awxx3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
 bg_color = Color(0, 0, 0, 1)
@@ -121,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_37juv")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,7 +183,41 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
 text = "Run"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextBox" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -75.0
+offset_right = 550.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "A cyclops draws near!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Label" parent="Panel/TextBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = ">>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 415.0
 offset_top = 127.0
@@ -190,8 +225,9 @@ offset_right = 431.0
 offset_bottom = 143.0
 scale = Vector2(16, 16)
 texture = ExtResource("1_t1ok4")
+script = ExtResource("3_awxx3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
 libraries = {
 "": SubResource("AnimationLibrary_t2xde")
 }
