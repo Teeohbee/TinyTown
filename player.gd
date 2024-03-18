@@ -17,7 +17,8 @@ var moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	position = PlayerState.last_position
+	$Camera2D.reset_smoothing()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +26,7 @@ func _process(_delta):
 	handle_movement()
 	if Input.is_action_just_pressed("ui_accept"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+		PlayerState.last_position = position
 
 
 # Handles player movement
