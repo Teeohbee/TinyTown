@@ -66,3 +66,8 @@ func play_tween(tween, dir):
 		)
 		. set_trans(Tween.TRANS_SINE)
 	)
+
+
+func _on_dungeon_entrance_area_entered(_area):
+	SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+	PlayerState.last_position = position

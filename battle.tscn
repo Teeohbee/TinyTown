@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhkd51qijugrl"]
+[gd_scene load_steps=15 format=3 uid="uid://bhkd51qijugrl"]
 
 [ext_resource type="Script" path="res://battle.gd" id="1_37juv"]
 [ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://tile_0109.png" id="1_t1ok4"]
+[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://monogram-extended.ttf" id="2_w1gwc"]
 [ext_resource type="Script" path="res://enemy.gd" id="3_awxx3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
@@ -161,6 +162,8 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_oamix")
 theme_override_styles/focus = SubResource("StyleBoxFlat_qg0ci")
 text = "Attack"
@@ -170,6 +173,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
 text = "Defend"
@@ -179,6 +184,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
 text = "Run"
@@ -196,7 +203,8 @@ offset_right = 550.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 72
 text = "A cyclops draws near!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -212,7 +220,8 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 52
 text = ">>"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -241,6 +250,8 @@ offset_bottom = 125.0
 
 [node name="Label" type="Label" parent="PlayerHealth"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 32
 text = "Player"
 
 [node name="ProgressBar" type="ProgressBar" parent="PlayerHealth"]
@@ -266,7 +277,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 32
 text = "HP: 5/10"
+vertical_alignment = 1
 
 [node name="EnemyHealth" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -282,6 +296,8 @@ size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="EnemyHealth"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 32
 text = "Enemy"
 
 [node name="ProgressBar" type="ProgressBar" parent="EnemyHealth"]
@@ -309,6 +325,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_font_sizes/font_size = 32
 text = "HP: 6/10"
 
+[connection signal="pressed" from="Panel/ActionButtons/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Panel/ActionButtons/Run" to="." method="_on_run_pressed"]
