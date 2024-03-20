@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://player.gd" id="3_wvky5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ja7i"]
-size = Vector2(22, 5)
+size = Vector2(32, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jp44d"]
 size = Vector2(16, 15)
@@ -119,7 +119,7 @@ layer_2/tile_data = PackedInt32Array(1310762, 65537, 8, 1376291, 196609, 8, 1441
 [node name="DungeonEntrance" type="Area2D" parent="TileMap"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DungeonEntrance"]
-position = Vector2(896, 199.5)
+position = Vector2(896, 196)
 shape = SubResource("RectangleShape2D_1ja7i")
 
 [node name="Player" type="Area2D" parent="."]
@@ -148,4 +148,3 @@ libraries = {
 }
 
 [connection signal="area_entered" from="TileMap/DungeonEntrance" to="Player" method="_on_dungeon_entrance_area_entered"]
-[connection signal="body_entered" from="TileMap/DungeonEntrance" to="Player" method="_on_dungeon_entrance_body_entered"]

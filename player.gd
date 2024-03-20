@@ -17,7 +17,10 @@ var moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = PlayerState.last_position
+	if PlayerState.last_position.has(self.get_parent().name):
+		position = PlayerState.last_position[self.get_parent().name]
+	else:
+		position = PlayerState.reset_position
 	$Camera2D.reset_smoothing()
 
 
@@ -26,7 +29,7 @@ func _process(_delta):
 	handle_movement()
 	if Input.is_action_just_pressed("ui_accept"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
-		PlayerState.last_position = position
+		PlayerState.last_position[self.get_parent().name] = position
 
 
 # Handles player movement
@@ -70,4 +73,9 @@ func play_tween(tween, dir):
 
 func _on_dungeon_entrance_area_entered(_area):
 	SceneTransition.change_scene_to_file("res://dungeon.tscn")
-	PlayerState.last_position = position
+	PlayerState.last_position[self.get_parent().name] = Vector2(position.x, position.y + 12)
+
+
+func _on_dungeon_exit_area_entered(_area):
+	SceneTransition.change_scene_to_file("res://world.tscn")
+	PlayerState.last_position[self.get_parent().name] = Vector2(position.x, position.y + 12)
