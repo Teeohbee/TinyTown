@@ -69,5 +69,5 @@ func play_tween(tween, dir):
 
 
 func _on_dungeon_entrance_area_entered(_area):
-	SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+	SceneTransition.change_scene_to_file("res://dungeon.tscn")
 	PlayerState.last_position = position
