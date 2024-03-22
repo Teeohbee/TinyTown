@@ -5,6 +5,7 @@ signal text_box_closed
 # Constants for animation names and scene paths
 const INTRO_ANIMATION = "intro"
 const WORLD_SCENE_PATH = "res://world.tscn"
+const DUNGEON_SCENE_PATH = "res://dungeon.tscn"
 
 @onready var enemy_name = $Enemy.enemy_name
 
@@ -33,7 +34,7 @@ func _on_run_pressed():
 	if chance == 1:
 		show_text_box("You managed to escape!")
 		await self.text_box_closed
-		SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
+		SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
 	else:
 		show_text_box("You couldn't escape!")
 		await self.text_box_closed
