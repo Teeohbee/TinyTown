@@ -45,6 +45,7 @@ func _on_attack_pressed():
 	await self.text_box_closed
 	$Enemy.health = max(0, $Enemy.health - PlayerState.damage)
 	update_health_bar($EnemyHealth/ProgressBar, $Enemy)
+	$Enemy/AnimationPlayer.play("takes_damage")
 	show_text_box("You dealt " + str(PlayerState.damage) + " damage!")
 	await self.text_box_closed
 	if $Enemy.health == 0:
@@ -80,6 +81,8 @@ func player_death():
 
 
 func enemy_death():
+	$Enemy/AnimationPlayer.play("death")
+	await $Enemy/AnimationPlayer.animation_finished
 	show_text_box("You defeated " + enemy_name + "!")
 	await self.text_box_closed
 	SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
