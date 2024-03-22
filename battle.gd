@@ -27,29 +27,62 @@ func _process(_delta):
 
 # Changes the current scene to the world scene when the run button is pressed
 func _on_run_pressed():
-	show_text_box("You managed to escape!")
+	show_text_box("You attempt to run away!")
 	await self.text_box_closed
-	SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
+	var chance = randi_range(0, 1)
+	if chance == 1:
+		show_text_box("You managed to escape!")
+		await self.text_box_closed
+		SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
+	else:
+		show_text_box("You couldn't escape!")
+		await self.text_box_closed
+		enemy_turn()
 
 
 func _on_attack_pressed():
-	show_text_box("You attacked " + enemy_name + "!")
+	show_text_box("You attack " + enemy_name + "!")
 	await self.text_box_closed
-	$Enemy.health -= PlayerState.damage
+	$Enemy.health = max(0, $Enemy.health - PlayerState.damage)
 	update_health_bar($EnemyHealth/ProgressBar, $Enemy)
 	show_text_box("You dealt " + str(PlayerState.damage) + " damage!")
 	await self.text_box_closed
-	enemy_turn()
+	if $Enemy.health == 0:
+		enemy_death()
+	else:
+		enemy_turn()
 
 
-func enemy_turn():
-	show_text_box("The " + enemy_name + " attacked you!")
+func _on_defend_pressed():
+	show_text_box("You take a defensive position!")
 	await self.text_box_closed
-	PlayerState.health -= $Enemy.damage
+	enemy_turn(true)
+
+
+func enemy_turn(defending: bool = false):
+	show_text_box("The " + enemy_name + " attacks you!")
+	await self.text_box_closed
+	var damage = $Enemy.damage / 2 if defending else $Enemy.damage
+	PlayerState.health = max(0, PlayerState.health - damage)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
-	show_text_box("You took " + str($Enemy.damage) + " damage!")
+	show_text_box("You took " + str(damage) + " damage!")
 	await self.text_box_closed
-	hide_text_box()
+	if PlayerState.health == 0:
+		player_death()
+	else:
+		hide_text_box()
+
+
+func player_death():
+	show_text_box("You were defeated!")
+	await self.text_box_closed
+	show_text_box("GAME OVER!")
+
+
+func enemy_death():
+	show_text_box("You defeated " + enemy_name + "!")
+	await self.text_box_closed
+	SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
 
 
 func show_text_box(message):

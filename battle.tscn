@@ -330,4 +330,5 @@ theme_override_font_sizes/font_size = 32
 text = "HP: 6/10"
 
 [connection signal="pressed" from="Panel/ActionButtons/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Panel/ActionButtons/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="Panel/ActionButtons/Run" to="." method="_on_run_pressed"]
