@@ -86,7 +86,7 @@ func enemy_death():
 	await $Enemy/AnimationPlayer.animation_finished
 	show_text_box("You defeated " + enemy_name + "!")
 	await self.text_box_closed
-	SceneTransition.change_scene_to_file(WORLD_SCENE_PATH)
+	SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
 
 
 func show_text_box(message):

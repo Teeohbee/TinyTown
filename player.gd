@@ -57,8 +57,8 @@ func move(dir):
 	play_tween(tween, dir)
 	moving = true
 	await tween.finished
-	var chance = randi_range(0, 2)
-	if chance == 0 and self.get_parent().name == "Dungeon":
+	var chance = randi_range(0, 7)
+	if self.get_parent().name == "Dungeon" and chance == 0:
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 		PlayerState.last_position[self.get_parent().name] = position
 	else:
