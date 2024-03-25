@@ -1,5 +1,7 @@
 extends Area2D
 
+signal text_box_closed
+
 # Constants
 const TILE_SIZE = 16
 const ANIMATION_SPEED = 4
@@ -11,6 +13,7 @@ var inputs = {
 	"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN
 }
 var moving = false
+var talking = false
 
 @onready var ray = $RayCast2D
 
@@ -27,19 +30,26 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	handle_movement()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_focus_next"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 		PlayerState.last_position[self.get_parent().name] = position
+	if Input.is_action_just_pressed("ui_accept") and $Camera2D/CanvasLayer/Panel.visible:
+		emit_signal("text_box_closed")
 
 
 # Handles player movement
 func handle_movement():
-	if moving:
+	if moving or talking:
 		return
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			if is_colliding(dir):
 				$AnimationPlayer.play("bump_" + dir)
+				$Camera2D/CanvasLayer/Panel.show()
+				talking = true
+				await self.text_box_closed
+				talking = false
+				$Camera2D/CanvasLayer/Panel.hide()
 			else:
 				move(dir)
 
