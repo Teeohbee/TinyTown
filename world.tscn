@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://be63leund0pj2"]
+[gd_scene load_steps=16 format=3 uid="uid://be63leund0pj2"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://tileset.tres" id="1_dstrs"]
 [ext_resource type="Texture2D" uid="uid://vyj0k0g0aq23" path="res://dungeon_tilemap.png" id="2_hcw0y"]
 [ext_resource type="Script" path="res://player.gd" id="3_wvky5"]
 [ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://monogram-extended.ttf" id="4_6fc3b"]
+[ext_resource type="Script" path="res://granny.gd" id="5_56mqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ja7i"]
 size = Vector2(32, 8)
@@ -183,7 +184,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_6fc3b")
 theme_override_font_sizes/font_size = 72
-text = "\"Hello lovey, how are you?\""
+text = "\"Testing, testing, 1, 2, 3\""
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -214,6 +215,7 @@ libraries = {
 
 [node name="Granny" type="StaticBody2D" parent="." groups=["npc"]]
 position = Vector2(472, 360)
+script = ExtResource("5_56mqo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Granny"]
 texture = ExtResource("2_hcw0y")

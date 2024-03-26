@@ -46,16 +46,18 @@ func handle_movement():
 		if Input.is_action_pressed(dir):
 			if is_colliding(dir):
 				$AnimationPlayer.play("bump_" + dir)
-				if ray.get_collider().is_in_group("npc"):
-					talk_with_npc()
+				interact_with_collider()
 			else:
 				move(dir)
 
 
-func talk_with_npc():
+func interact_with_collider():
+	var collider = ray.get_collider()
+	if not collider.is_in_group("npc"):
+		return
 	$Camera2D/CanvasLayer/Panel.show()
 	talking = true
-	for line in dialogue:
+	for line in collider.dialogue():
 		$Camera2D/CanvasLayer/Panel/TextBox.text = line
 		await self.text_box_closed
 	talking = false
