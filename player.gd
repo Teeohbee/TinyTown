@@ -14,6 +14,7 @@ var inputs = {
 }
 var moving = false
 var talking = false
+var dialogue = ["Alright fella!", "Hello lovey, how are you?", "aw that's good, now scram!"]
 
 @onready var ray = $RayCast2D
 
@@ -45,13 +46,20 @@ func handle_movement():
 		if Input.is_action_pressed(dir):
 			if is_colliding(dir):
 				$AnimationPlayer.play("bump_" + dir)
-				$Camera2D/CanvasLayer/Panel.show()
-				talking = true
-				await self.text_box_closed
-				talking = false
-				$Camera2D/CanvasLayer/Panel.hide()
+				if ray.get_collider().is_in_group("npc"):
+					talk_with_npc()
 			else:
 				move(dir)
+
+
+func talk_with_npc():
+	$Camera2D/CanvasLayer/Panel.show()
+	talking = true
+	for line in dialogue:
+		$Camera2D/CanvasLayer/Panel/TextBox.text = line
+		await self.text_box_closed
+	talking = false
+	$Camera2D/CanvasLayer/Panel.hide()
 
 
 # Checks if the player will collide in the given direction
