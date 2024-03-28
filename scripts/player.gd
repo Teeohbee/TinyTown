@@ -24,7 +24,8 @@ func _ready():
 		position = PlayerState.last_position[self.get_parent().name]
 	else:
 		position = PlayerState.reset_position
-	$Camera2D.reset_smoothing()
+	$Camera.reset_smoothing()
+	$Camera.update_player_hud()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +34,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 		PlayerState.last_position[self.get_parent().name] = position
-	if Input.is_action_just_pressed("ui_accept") and $Camera2D/CanvasLayer/Panel.visible:
+	if Input.is_action_just_pressed("ui_accept") and $Camera/CanvasLayer/DialoguePanel.visible:
 		emit_signal("text_box_closed")
 
 
@@ -54,13 +55,13 @@ func interact_with_collider():
 	var collider = ray.get_collider()
 	if not collider.is_in_group("npc"):
 		return
-	$Camera2D/CanvasLayer/Panel.show()
+	$Camera/CanvasLayer/DialoguePanel.show()
 	talking = true
 	for line in collider.dialogue():
-		$Camera2D/CanvasLayer/Panel/TextBox.text = line
+		$Camera/CanvasLayer/DialoguePanel/TextBox.text = line
 		await self.text_box_closed
 	talking = false
-	$Camera2D/CanvasLayer/Panel.hide()
+	$Camera/CanvasLayer/DialoguePanel.hide()
 
 
 # Checks if the player will collide in the given direction

@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm2ho1y5wwh02"]
+
+[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="1_5wuob"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_8umds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4au7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Camera" type="Camera2D"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+script = ExtResource("1_8umds")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialoguePanel" type="Panel" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i4au7")
+
+[node name="TextBox" type="Label" parent="CanvasLayer/DialoguePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -75.0
+offset_right = 550.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 72
+text = "\"Testing, testing, 1, 2, 3\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Label" parent="CanvasLayer/DialoguePanel/TextBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 52
+text = ">>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterPanel" type="Panel" parent="CanvasLayer"]
+offset_right = 200.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i4au7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CharacterPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/CharacterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 72
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="CanvasLayer/CharacterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 48
+text = "HP: 15/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Experience" type="Label" parent="CanvasLayer/CharacterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 48
+text = "EXP: 0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="CanvasLayer/CharacterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5wuob")
+theme_override_font_sizes/font_size = 48
+text = "LVL: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
