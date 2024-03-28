@@ -86,6 +86,12 @@ func enemy_death():
 	await $Enemy/AnimationPlayer.animation_finished
 	show_text_box("You defeated " + enemy_name + "!")
 	await self.text_box_closed
+	show_text_box("You earned " + str($Enemy.experience_earned) + " experience!")
+	await self.text_box_closed
+	if PlayerState.will_level_up($Enemy.experience_earned):
+		show_text_box("You leveled up!")
+		await self.text_box_closed
+	PlayerState.gain_experience($Enemy.experience_earned)
 	SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
 
 
