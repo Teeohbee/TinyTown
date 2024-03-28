@@ -30,6 +30,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	print($Camera/CanvasLayer/DialoguePanel.visible)
 	handle_movement()
 	if Input.is_action_just_pressed("ui_focus_next"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
@@ -104,3 +105,9 @@ func _on_dungeon_entrance_area_entered(_area):
 func _on_dungeon_exit_area_entered(_area):
 	SceneTransition.change_scene_to_file("res://scenes/world.tscn")
 	PlayerState.last_position[self.get_parent().name] = Vector2(position.x, position.y + 12)
+
+
+func _on_maiden_player_healed():
+	await self.text_box_closed
+	PlayerState.health = PlayerState.max_health
+	$Camera.update_player_hud()
