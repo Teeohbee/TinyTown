@@ -4,8 +4,8 @@ signal text_box_closed
 
 # Constants for animation names and scene paths
 const INTRO_ANIMATION = "intro"
-const WORLD_SCENE_PATH = "res://world.tscn"
-const DUNGEON_SCENE_PATH = "res://dungeon.tscn"
+const WORLD_SCENE_PATH = "res://scenes/world.tscn"
+const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
 
 @onready var enemy_name = $Enemy.enemy_name
 

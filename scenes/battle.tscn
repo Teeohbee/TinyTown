@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bhkd51qijugrl"]
 
-[ext_resource type="Script" path="res://battle.gd" id="1_37juv"]
-[ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://tile_0109.png" id="1_t1ok4"]
-[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://monogram-extended.ttf" id="2_w1gwc"]
-[ext_resource type="Script" path="res://enemy.gd" id="3_awxx3"]
+[ext_resource type="Script" path="res://scripts/battle.gd" id="1_rnys3"]
+[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_11f3l"]
+[ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://assets/tile_0109.png" id="3_rsmug"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="4_pt71q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
 bg_color = Color(0, 0, 0, 1)
@@ -144,7 +144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_37juv")
+script = ExtResource("1_rnys3")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -185,7 +185,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_oamix")
 theme_override_styles/focus = SubResource("StyleBoxFlat_qg0ci")
@@ -196,7 +196,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
@@ -207,7 +207,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ysjfu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kud70")
@@ -226,7 +226,7 @@ offset_right = 550.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 72
 text = "A cyclops draws near!"
 horizontal_alignment = 1
@@ -243,7 +243,7 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 52
 text = ">>"
 horizontal_alignment = 1
@@ -264,8 +264,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(16, 16)
 pivot_offset = Vector2(8, 16)
-texture = ExtResource("1_t1ok4")
-script = ExtResource("3_awxx3")
+texture = ExtResource("3_rsmug")
+script = ExtResource("4_pt71q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
 libraries = {
@@ -281,7 +281,7 @@ offset_bottom = 125.0
 
 [node name="Label" type="Label" parent="PlayerHealth"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 48
 text = "Player"
 
@@ -308,7 +308,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 48
 text = "HP: 5/10"
 vertical_alignment = 1
@@ -327,7 +327,7 @@ size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="EnemyHealth"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 48
 text = "Enemy"
 
@@ -356,7 +356,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w1gwc")
+theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 48
 text = "HP: 6/10"
 

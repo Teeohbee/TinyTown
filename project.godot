@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="TinyTown"
-run/main_scene="res://world.tscn"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneTransition="*res://scene_transition.tscn"
-PlayerState="*res://player_state.gd"
+PlayerState="*res://scripts/player_state.gd"
+SceneTransition="*res://scenes/scene_transition.tscn"
 
 [display]
 

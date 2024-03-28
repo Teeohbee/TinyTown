@@ -6,7 +6,7 @@ signal text_box_closed
 const TILE_SIZE = 16
 const ANIMATION_SPEED = 4
 const TWEEN_DURATION = 1.0
-const BATTLE_SCENE_PATH = "res://battle.tscn"
+const BATTLE_SCENE_PATH = "res://scenes/battle.tscn"
 
 # Variables
 var inputs = {
@@ -14,7 +14,6 @@ var inputs = {
 }
 var moving = false
 var talking = false
-var dialogue = ["Alright fella!", "Hello lovey, how are you?", "aw that's good, now scram!"]
 
 @onready var ray = $RayCast2D
 
@@ -97,10 +96,10 @@ func play_tween(tween, dir):
 
 
 func _on_dungeon_entrance_area_entered(_area):
-	SceneTransition.change_scene_to_file("res://dungeon.tscn")
+	SceneTransition.change_scene_to_file("res://scenes/dungeon.tscn")
 	PlayerState.last_position[self.get_parent().name] = Vector2(position.x, position.y + 12)
 
 
 func _on_dungeon_exit_area_entered(_area):
-	SceneTransition.change_scene_to_file("res://world.tscn")
+	SceneTransition.change_scene_to_file("res://scenes/world.tscn")
 	PlayerState.last_position[self.get_parent().name] = Vector2(position.x, position.y + 12)
