@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwevdknc1tvjs"]
+[gd_scene load_steps=15 format=3 uid="uid://cwevdknc1tvjs"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_4su6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_qiqna"]
 [ext_resource type="Texture2D" uid="uid://vyj0k0g0aq23" path="res://assets/dungeon_tilemap.png" id="3_3mgmb"]
 [ext_resource type="PackedScene" uid="uid://bm2ho1y5wwh02" path="res://scenes/camera.tscn" id="4_l5kht"]
+[ext_resource type="Script" path="res://scripts/wizard.gd" id="5_8js63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wv66r"]
 size = Vector2(32, 8)
@@ -103,6 +104,9 @@ _data = {
 "bump_ui_up": SubResource("Animation_rt30o")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rosa"]
+size = Vector2(16, 16)
+
 [node name="Dungeon" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -144,5 +148,17 @@ target_position = Vector2(16, 0)
 libraries = {
 "": SubResource("AnimationLibrary_fgia8")
 }
+
+[node name="Wizard" type="StaticBody2D" parent="." groups=["npc"]]
+position = Vector2(472, 168)
+script = ExtResource("5_8js63")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wizard"]
+texture = ExtResource("3_3mgmb")
+region_enabled = true
+region_rect = Rect2(0, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wizard"]
+shape = SubResource("RectangleShape2D_1rosa")
 
 [connection signal="area_entered" from="TileMap/DungeonExit" to="Player" method="_on_dungeon_exit_area_entered"]

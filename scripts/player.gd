@@ -30,7 +30,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	print($Camera/CanvasLayer/DialoguePanel.visible)
 	handle_movement()
 	if Input.is_action_just_pressed("ui_focus_next"):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
@@ -63,6 +62,8 @@ func interact_with_collider():
 		await self.text_box_closed
 	talking = false
 	$Camera/CanvasLayer/DialoguePanel.hide()
+	if collider.name == "Wizard":
+		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 
 
 # Checks if the player will collide in the given direction
@@ -78,12 +79,13 @@ func move(dir):
 	play_tween(tween, dir)
 	moving = true
 	await tween.finished
-	var chance = randi_range(0, 7)
-	if self.get_parent().name == "Dungeon" and chance == 0:
-		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
-		PlayerState.last_position[self.get_parent().name] = position
-	else:
-		moving = false
+	moving = false
+	#var chance = randi_range(0, 7)
+	#if self.get_parent().name == "Dungeon" and chance == 0:
+		#SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+		#PlayerState.last_position[self.get_parent().name] = position
+	#else:
+		#moving = false
 
 
 # Plays the tween for the player movement
