@@ -7,13 +7,14 @@ const INTRO_ANIMATION = "intro"
 const WORLD_SCENE_PATH = "res://scenes/world.tscn"
 const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
 
-@onready var enemy_name = $Enemy.enemy_name
+@onready var enemy = $Enemy
+@onready var enemy_name = enemy.enemy_name
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Enemy/AnimationPlayer.play(INTRO_ANIMATION)
-	update_health_bar($EnemyHealth/ProgressBar, $Enemy)
+	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
+	update_health_bar($EnemyHealth/ProgressBar, enemy)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
 	show_text_box("A " + enemy_name + " draws near!")
 	await self.text_box_closed
@@ -44,12 +45,12 @@ func _on_run_pressed():
 func _on_attack_pressed():
 	show_text_box("You attack " + enemy_name + "!")
 	await self.text_box_closed
-	$Enemy.health = max(0, $Enemy.health - PlayerState.damage)
-	update_health_bar($EnemyHealth/ProgressBar, $Enemy)
-	$Enemy/AnimationPlayer.play("takes_damage")
+	enemy.health = max(0, enemy.health - PlayerState.damage)
+	update_health_bar($EnemyHealth/ProgressBar, enemy)
+	enemy.get_node("AnimationPlayer").play("takes_damage")
 	show_text_box("You dealt " + str(PlayerState.damage) + " damage!")
 	await self.text_box_closed
-	if $Enemy.health == 0:
+	if enemy.health == 0:
 		enemy_death()
 	else:
 		enemy_turn()
@@ -64,7 +65,7 @@ func _on_defend_pressed():
 func enemy_turn(defending: bool = false):
 	show_text_box("The " + enemy_name + " attacks you!")
 	await self.text_box_closed
-	var damage = $Enemy.damage / 2 if defending else $Enemy.damage
+	var damage = enemy.damage / 2 if defending else enemy.damage
 	PlayerState.health = max(0, PlayerState.health - damage)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
 	show_text_box("You took " + str(damage) + " damage!")
@@ -82,16 +83,16 @@ func player_death():
 
 
 func enemy_death():
-	$Enemy/AnimationPlayer.play("death")
-	await $Enemy/AnimationPlayer.animation_finished
+	enemy.get_node("AnimationPlayer").play("death")
+	await enemy.get_node("AnimationPlayer").animation_finished
 	show_text_box("You defeated " + enemy_name + "!")
 	await self.text_box_closed
-	show_text_box("You earned " + str($Enemy.experience_earned) + " experience!")
+	show_text_box("You earned " + str(enemy.experience_earned) + " experience!")
 	await self.text_box_closed
-	if PlayerState.will_level_up($Enemy.experience_earned):
+	if PlayerState.will_level_up(enemy.experience_earned):
 		show_text_box("You leveled up!")
 		await self.text_box_closed
-	PlayerState.gain_experience($Enemy.experience_earned)
+	PlayerState.gain_experience(enemy.experience_earned)
 	SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
 
 
