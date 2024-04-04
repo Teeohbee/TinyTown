@@ -2,13 +2,17 @@ extends Control
 
 signal text_box_closed
 
+enum Scene { WORLD, DUNGEON, CYCLOPS, WIZARD }
+
+const SCENES = {
+	Scene.WORLD: "res://scenes/world.tscn",
+	Scene.DUNGEON: "res://scenes/dungeon.tscn",
+	Scene.CYCLOPS: "res://scenes/enemies/cyclops.tscn",
+	Scene.WIZARD: "res://scenes/enemies/wizard.tscn"
+}
+
 # Constants for animation names and scene paths
 const INTRO_ANIMATION = "intro"
-const WORLD_SCENE_PATH = "res://scenes/world.tscn"
-const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
-
-var cyclops_scene = "res://scenes/enemies/cyclops.tscn"
-var wizard_scene = "res://scenes/enemies/wizard.tscn"
 var enemy
 
 
@@ -23,10 +27,8 @@ func _ready():
 
 
 func setup_enemy():
-	if PlayerState.engaging_boss:
-		enemy = load(wizard_scene).instantiate()
-	else:
-		enemy = load(cyclops_scene).instantiate()
+	var scene = Scene.WIZARD if PlayerState.engaging_boss else Scene.CYCLOPS
+	enemy = load(SCENES[scene]).instantiate()
 	add_child(enemy)
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
@@ -45,7 +47,7 @@ func _on_run_pressed():
 	if chance == 1:
 		show_text_box("You managed to escape!")
 		await self.text_box_closed
-		SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
+		SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 	else:
 		show_text_box("You couldn't escape!")
 		await self.text_box_closed
@@ -103,7 +105,7 @@ func enemy_death():
 		show_text_box("You leveled up!")
 		await self.text_box_closed
 	PlayerState.gain_experience(enemy.experience_earned)
-	SceneTransition.change_scene_to_file(DUNGEON_SCENE_PATH)
+	SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 
 
 func show_text_box(message):
