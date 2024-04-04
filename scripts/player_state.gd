@@ -11,7 +11,7 @@ enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 @export var level = 1
 @export var experience = 0
 @export var experience_required = 10
-@export var engaging_boss = true
+@export var engaging_boss = false
 
 
 func progress_quest_status():

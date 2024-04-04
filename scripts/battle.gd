@@ -2,12 +2,15 @@ extends Control
 
 signal text_box_closed
 
-enum Scene { WORLD, DUNGEON, CYCLOPS, WIZARD }
+enum Scene { WORLD, DUNGEON, CYCLOPS, WIZARD, GHOST, SPIDER, RAT }
 
 const SCENES = {
 	Scene.WORLD: "res://scenes/world.tscn",
 	Scene.DUNGEON: "res://scenes/dungeon.tscn",
 	Scene.CYCLOPS: "res://scenes/enemies/cyclops.tscn",
+	Scene.GHOST: "res://scenes/enemies/ghost.tscn",
+	Scene.RAT: "res://scenes/enemies/rat.tscn",
+	Scene.SPIDER: "res://scenes/enemies/spider.tscn",
 	Scene.WIZARD: "res://scenes/enemies/wizard.tscn"
 }
 
@@ -27,11 +30,13 @@ func _ready():
 
 
 func setup_enemy():
-	var scene = Scene.WIZARD if PlayerState.engaging_boss else Scene.CYCLOPS
+	var scene = Scene.WIZARD if PlayerState.engaging_boss else random_enemy()
 	enemy = load(SCENES[scene]).instantiate()
 	add_child(enemy)
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
+func random_enemy():
+	return [Scene.CYCLOPS, Scene.GHOST, Scene.RAT, Scene.SPIDER].pick_random()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
