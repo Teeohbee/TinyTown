@@ -63,6 +63,7 @@ func interact_with_collider():
 	talking = false
 	$Camera/CanvasLayer/DialoguePanel.hide()
 	if collider.name == "Wizard":
+		PlayerState.engaging_boss = true
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 
 

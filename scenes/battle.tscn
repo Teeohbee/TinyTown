@@ -227,9 +227,8 @@ custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_4t85v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yuqch")
-max_value = 10.0
+max_value = 999.0
 step = 1.0
-value = 6.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="EnemyHealth/ProgressBar"]

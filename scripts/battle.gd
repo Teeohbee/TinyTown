@@ -9,20 +9,26 @@ const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
 
 var cyclops_scene = "res://scenes/enemies/cyclops.tscn"
 var wizard_scene = "res://scenes/enemies/wizard.tscn"
-
-@onready var enemy = load(cyclops_scene).instantiate()
-@onready var enemy_name = enemy.enemy_name
+var enemy
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(enemy)
-	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
+	setup_enemy()
 	update_health_bar($EnemyHealth/ProgressBar, enemy)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
-	show_text_box("A " + enemy_name + " draws near!")
+	show_text_box("A " + enemy.name + " draws near!")
 	await self.text_box_closed
 	hide_text_box()
+
+
+func setup_enemy():
+	if PlayerState.engaging_boss:
+		enemy = load(wizard_scene).instantiate()
+	else:
+		enemy = load(cyclops_scene).instantiate()
+	add_child(enemy)
+	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,7 +53,7 @@ func _on_run_pressed():
 
 
 func _on_attack_pressed():
-	show_text_box("You attack " + enemy_name + "!")
+	show_text_box("You attack " + enemy.name + "!")
 	await self.text_box_closed
 	enemy.health = max(0, enemy.health - PlayerState.damage)
 	update_health_bar($EnemyHealth/ProgressBar, enemy)
@@ -67,7 +73,7 @@ func _on_defend_pressed():
 
 
 func enemy_turn(defending: bool = false):
-	show_text_box("The " + enemy_name + " attacks you!")
+	show_text_box("The " + enemy.name + " attacks you!")
 	await self.text_box_closed
 	var damage = enemy.damage / 2 if defending else enemy.damage
 	PlayerState.health = max(0, PlayerState.health - damage)
@@ -89,7 +95,7 @@ func player_death():
 func enemy_death():
 	enemy.get_node("AnimationPlayer").play("death")
 	await enemy.get_node("AnimationPlayer").animation_finished
-	show_text_box("You defeated " + enemy_name + "!")
+	show_text_box("You defeated " + enemy.name + "!")
 	await self.text_box_closed
 	show_text_box("You earned " + str(enemy.experience_earned) + " experience!")
 	await self.text_box_closed
