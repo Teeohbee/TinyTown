@@ -7,12 +7,15 @@ const INTRO_ANIMATION = "intro"
 const WORLD_SCENE_PATH = "res://scenes/world.tscn"
 const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
 
-@onready var enemy = $Enemy
+var enemy_scene = "res://scenes/cyclops.tscn"
+
+@onready var enemy = load(enemy_scene).instantiate()
 @onready var enemy_name = enemy.enemy_name
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_child(enemy)
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 	update_health_bar($EnemyHealth/ProgressBar, enemy)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
