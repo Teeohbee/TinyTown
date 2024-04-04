@@ -7,9 +7,10 @@ const INTRO_ANIMATION = "intro"
 const WORLD_SCENE_PATH = "res://scenes/world.tscn"
 const DUNGEON_SCENE_PATH = "res://scenes/dungeon.tscn"
 
-var enemy_scene = "res://scenes/cyclops.tscn"
+var cyclops_scene = "res://scenes/enemies/cyclops.tscn"
+var wizard_scene = "res://scenes/enemies/wizard.tscn"
 
-@onready var enemy = load(enemy_scene).instantiate()
+@onready var enemy = load(cyclops_scene).instantiate()
 @onready var enemy_name = enemy.enemy_name
 
 

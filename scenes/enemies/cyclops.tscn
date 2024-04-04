@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7wb3e8o8tmk2"]
 
-[ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://assets/tile_0109.png" id="1_3fp6q"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="2_k7ada"]
+[ext_resource type="Texture2D" uid="uid://6asn0p6g5f6x" path="res://assets/tile_0109.png" id="1_db70j"]
+[ext_resource type="Script" path="res://scripts/enemies/cyclops.gd" id="2_3jo2j"]
 
 [sub_resource type="Animation" id="Animation_1uaxp"]
 length = 0.001
@@ -87,7 +87,7 @@ _data = {
 "takes_damage": SubResource("Animation_h2fn0")
 }
 
-[node name="Enemy" type="TextureRect"]
+[node name="Cyclops" type="TextureRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -101,8 +101,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(16, 16)
 pivot_offset = Vector2(8, 16)
-texture = ExtResource("1_3fp6q")
-script = ExtResource("2_k7ada")
+texture = ExtResource("1_db70j")
+script = ExtResource("2_3jo2j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
