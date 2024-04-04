@@ -16,6 +16,7 @@ const SCENES = {
 
 # Constants for animation names and scene paths
 const INTRO_ANIMATION = "intro"
+var enemy_scene
 var enemy
 
 
@@ -30,8 +31,8 @@ func _ready():
 
 
 func setup_enemy():
-	var scene = Scene.WIZARD if PlayerState.engaging_boss else random_enemy()
-	enemy = load(SCENES[scene]).instantiate()
+	enemy_scene = Scene.WIZARD if PlayerState.engaging_boss else random_enemy()
+	enemy = load(SCENES[enemy_scene]).instantiate()
 	add_child(enemy)
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
@@ -109,6 +110,9 @@ func enemy_death():
 	if PlayerState.will_level_up(enemy.experience_earned):
 		show_text_box("You leveled up!")
 		await self.text_box_closed
+	if enemy_scene == Scene.WIZARD:
+		PlayerState.engaging_boss = false
+		PlayerState.progress_quest_status()
 	PlayerState.gain_experience(enemy.experience_earned)
 	SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 
