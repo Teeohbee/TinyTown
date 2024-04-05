@@ -85,10 +85,11 @@ func _on_defend_pressed():
 func enemy_turn(defending: bool = false):
 	show_text_box("The " + enemy.name + " attacks you!")
 	await self.text_box_closed
-	var damage = enemy.damage / 2 if defending else enemy.damage
-	PlayerState.health = max(0, PlayerState.health - damage)
+	var enemy_damage = enemy.damage()
+	var damage_taken = enemy_damage / 2 if defending else enemy_damage
+	PlayerState.health = max(0, PlayerState.health - damage_taken)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
-	show_text_box("You took " + str(damage) + " damage!")
+	show_text_box("You took " + str(damage_taken) + " damage!")
 	await self.text_box_closed
 	if PlayerState.health == 0:
 		player_death()

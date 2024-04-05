@@ -11,7 +11,7 @@ enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 @export var level = 1
 @export var experience = 0
 @export var experience_required = 10
-@export var engaging_boss = false
+@export var engaging_boss = true
 
 
 func progress_quest_status():
@@ -24,7 +24,7 @@ func will_level_up(experience_earned):
 
 func gain_experience(experience_earned):
 	experience += experience_earned
-	if experience >= experience_required:
+	while experience >= experience_required:
 		max_health = max_health + 5
 		level += 1
 		experience = experience - experience_required
