@@ -64,6 +64,7 @@ func interact_with_collider():
 	$Camera/CanvasLayer/DialoguePanel.hide()
 	if collider.name == "Wizard":
 		PlayerState.engaging_boss = true
+		PlayerState.last_position[self.get_parent().name] = position
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 
 

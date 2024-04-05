@@ -36,8 +36,10 @@ func setup_enemy():
 	add_child(enemy)
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
+
 func random_enemy():
 	return [Scene.CYCLOPS, Scene.GHOST, Scene.RAT, Scene.SPIDER].pick_random()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
