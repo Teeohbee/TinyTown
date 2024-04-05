@@ -13,7 +13,7 @@ const ACCEPTED_DIALOGUE = [
 	"You're ever so kind lovey, helping", "a little old lady like me.", "Chop, chop now!"
 ]
 
-const COMPLETED_DIALOGUE = ["This is impossible, how did you do this?"]
+const COMPLETED_DIALOGUE = ["My golly you actually did it!", "Thanks  a bunch lovey! 🐝"]
 
 
 # Returns the dialogue for this character

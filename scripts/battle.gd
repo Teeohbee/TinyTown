@@ -65,10 +65,11 @@ func _on_run_pressed():
 func _on_attack_pressed():
 	show_text_box("You attack " + enemy.name + "!")
 	await self.text_box_closed
-	enemy.health = max(0, enemy.health - PlayerState.damage)
+	var player_damage = PlayerState.damage()
+	enemy.health = max(0, enemy.health - player_damage)
 	update_health_bar($EnemyHealth/ProgressBar, enemy)
 	enemy.get_node("AnimationPlayer").play("takes_damage")
-	show_text_box("You dealt " + str(PlayerState.damage) + " damage!")
+	show_text_box("You dealt " + str(player_damage) + " damage!")
 	await self.text_box_closed
 	if enemy.health == 0:
 		enemy_death()
@@ -101,6 +102,11 @@ func player_death():
 	show_text_box("You were defeated!")
 	await self.text_box_closed
 	show_text_box("GAME OVER!")
+	await self.text_box_closed
+	PlayerState.health = 1
+	PlayerState.experience = 0
+	PlayerState.last_position = {}
+	SceneTransition.change_scene_to_file(SCENES[Scene.WORLD])
 
 
 func enemy_death():
