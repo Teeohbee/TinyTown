@@ -9,10 +9,10 @@ enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 @export var min_damage = 4
 @export var max_damage = 6
 @export var quest_status = QuestStatuses.NOT_STARTED
-@export var level = 3
+@export var level = 1
 @export var experience = 0
 @export var experience_required = 10
-@export var kill_count = 7
+@export var kill_count = 0
 @export var engaging_boss = false
 @export var sword_upgrade = false
 @export var bow_upgrade = false
