@@ -14,12 +14,14 @@ func update_player_hud():
 func update_label(name, text):
 	get_node("CanvasLayer/CharacterPanel/VBoxContainer/" + name).text = text
 
+
 func update_sword_upgrade():
 	var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
 	if PlayerState.sword_upgrade == true:
 		sword_upgrade_icon.show()
 	else:
 		sword_upgrade_icon.hide()
+
 
 func update_bow_upgrade():
 	var bow_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/BowUpgrade
