@@ -105,6 +105,7 @@ func player_death():
 	await self.text_box_closed
 	PlayerState.health = 1
 	PlayerState.experience = 0
+	PlayerState.kill_count = 0
 	PlayerState.last_position = {}
 	SceneTransition.change_scene_to_file(SCENES[Scene.WORLD])
 
@@ -123,6 +124,7 @@ func enemy_death():
 		PlayerState.engaging_boss = false
 		PlayerState.progress_quest_status()
 	PlayerState.gain_experience(enemy.experience_earned)
+	PlayerState.kill_count += 1
 	SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 
 

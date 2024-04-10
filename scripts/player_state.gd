@@ -12,9 +12,10 @@ enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 @export var level = 3
 @export var experience = 0
 @export var experience_required = 10
+@export var kill_count = 7
 @export var engaging_boss = false
 @export var sword_upgrade = false
-
+@export var bow_upgrade = false
 
 func damage():
 	return randi_range(min_damage, max_damage)
@@ -38,5 +39,10 @@ func gain_experience(experience_earned):
 
 func apply_sword_upgrade():
 	sword_upgrade = true
-	min_damage += 2
-	max_damage += 3
+	min_damage += 3
+	max_damage += 4
+
+func apply_bow_upgrade():
+	bow_upgrade = true
+	min_damage += 3
+	max_damage += 4

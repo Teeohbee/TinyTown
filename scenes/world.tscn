@@ -205,4 +205,5 @@ shape = SubResource("RectangleShape2D_8kmt6")
 
 [connection signal="area_entered" from="TileMap/DungeonEntrance" to="Player" method="_on_dungeon_entrance_area_entered"]
 [connection signal="gain_sword_upgrade" from="NPCs/Blacksmith" to="Player" method="_on_blacksmith_gain_sword_upgrade"]
+[connection signal="gain_bow_upgrade" from="NPCs/Archer" to="Player" method="_on_archer_gain_bow_upgrade"]
 [connection signal="player_healed" from="NPCs/Maiden" to="Player" method="_on_maiden_player_healed"]
