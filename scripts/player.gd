@@ -115,3 +115,9 @@ func _on_maiden_player_healed():
 	await self.text_box_closed
 	PlayerState.health = PlayerState.max_health
 	$Camera.update_player_hud()
+
+
+func _on_blacksmith_gain_sword_upgrade():
+	await self.text_box_closed
+	PlayerState.apply_sword_upgrade()
+	$Camera.update_player_hud()

@@ -9,10 +9,11 @@ enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 @export var min_damage = 4
 @export var max_damage = 6
 @export var quest_status = QuestStatuses.NOT_STARTED
-@export var level = 1
+@export var level = 3
 @export var experience = 0
 @export var experience_required = 10
 @export var engaging_boss = false
+@export var sword_upgrade = false
 
 
 func damage():
@@ -34,3 +35,8 @@ func gain_experience(experience_earned):
 		level += 1
 		experience = experience - experience_required
 		experience_required = roundi(experience_required * 1.5)
+
+func apply_sword_upgrade():
+	sword_upgrade = true
+	min_damage += 2
+	max_damage += 3

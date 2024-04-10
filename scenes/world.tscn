@@ -204,4 +204,5 @@ region_rect = Rect2(48, 128, 16, 16)
 shape = SubResource("RectangleShape2D_8kmt6")
 
 [connection signal="area_entered" from="TileMap/DungeonEntrance" to="Player" method="_on_dungeon_entrance_area_entered"]
+[connection signal="gain_sword_upgrade" from="NPCs/Blacksmith" to="Player" method="_on_blacksmith_gain_sword_upgrade"]
 [connection signal="player_healed" from="NPCs/Maiden" to="Player" method="_on_maiden_player_healed"]
