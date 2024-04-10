@@ -1,5 +1,7 @@
 extends Camera2D
 
+@onready var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
+@onready var bow_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/BowUpgrade
 
 func update_player_hud():
 	update_sword_upgrade()
@@ -16,7 +18,6 @@ func update_label(name, text):
 
 
 func update_sword_upgrade():
-	var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
 	if PlayerState.sword_upgrade == true:
 		sword_upgrade_icon.show()
 	else:
@@ -24,7 +25,6 @@ func update_sword_upgrade():
 
 
 func update_bow_upgrade():
-	var bow_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/BowUpgrade
 	if PlayerState.bow_upgrade == true:
 		bow_upgrade_icon.show()
 	else:
