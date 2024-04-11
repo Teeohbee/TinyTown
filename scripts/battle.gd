@@ -52,9 +52,10 @@ func _on_run_pressed():
 	show_text_box("You attempt to run away!")
 	await self.text_box_closed
 	var chance = randi_range(0, 1)
-	if chance == 1:
+	if chance == 1 and enemy_scene != Scene.WIZARD:
 		show_text_box("You managed to escape!")
 		await self.text_box_closed
+		PlayerState.engaging_boss = false
 		SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 	else:
 		show_text_box("You couldn't escape!")
@@ -103,6 +104,7 @@ func player_death():
 	await self.text_box_closed
 	show_text_box("GAME OVER!")
 	await self.text_box_closed
+	PlayerState.engaging_boss = false
 	PlayerState.health = 1
 	PlayerState.experience = 0
 	PlayerState.kill_count = 0
