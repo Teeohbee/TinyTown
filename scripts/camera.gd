@@ -1,7 +1,9 @@
 extends Camera2D
 
-@onready var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
+@onready
+var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
 @onready var bow_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/BowUpgrade
+
 
 func update_player_hud():
 	update_sword_upgrade()
