@@ -131,7 +131,7 @@ position = Vector2(896, 196)
 shape = SubResource("RectangleShape2D_1ja7i")
 
 [node name="Player" type="Area2D" parent="."]
-position = Vector2(520, 296)
+position = Vector2(584, 280)
 script = ExtResource("2_lgq7e")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]

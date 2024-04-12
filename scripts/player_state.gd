@@ -2,7 +2,7 @@ extends Node
 
 enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 
-@export var reset_position = Vector2(520, 296)
+@export var reset_position = Vector2(584, 280)
 @export var last_position = {}
 @export var health = 10
 @export var max_health = 10
@@ -49,3 +49,7 @@ func apply_bow_upgrade():
 	bow_upgrade = true
 	min_damage += 3
 	max_damage += 4
+
+
+func quest_completed():
+	return quest_status == QuestStatuses.COMPLETED

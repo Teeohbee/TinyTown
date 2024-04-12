@@ -7,6 +7,7 @@ const TILE_SIZE = 16
 const ANIMATION_SPEED = 4
 const TWEEN_DURATION = 1.0
 const BATTLE_SCENE_PATH = "res://scenes/battle.tscn"
+const END_SCENE_PATH = "res://scenes/end_screen.tscn"
 
 # Variables
 var inputs = {
@@ -66,6 +67,8 @@ func interact_with_collider():
 		PlayerState.engaging_boss = true
 		PlayerState.last_position[self.get_parent().name] = position
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+	if collider.name == "Granny" and PlayerState.quest_completed():
+		SceneTransition.change_scene_to_file(END_SCENE_PATH)
 
 
 # Checks if the player will collide in the given direction

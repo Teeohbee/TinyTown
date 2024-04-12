@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://8b15ngg43hnx"]
+
+[ext_resource type="Texture2D" uid="uid://dguyfcftpjqch" path="res://assets/reward.jpeg" id="1_had2t"]
+[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_wg03w"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+texture = ExtResource("1_had2t")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="End" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wg03w")
+theme_override_font_sizes/font_size = 100
+text = "
+THE END
+"
+horizontal_alignment = 1
+
+[node name="Thanks" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wg03w")
+theme_override_font_sizes/font_size = 100
+text = "
+Thanks for playing"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Credits" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wg03w")
+theme_override_font_sizes/font_size = 42
+text = "
+
+CREDITS
+programming - toby
+assets - kenney.nl
+artwork - copilot designer
+engine - godot"
+horizontal_alignment = 1
+autowrap_mode = 2

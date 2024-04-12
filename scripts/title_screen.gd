@@ -5,10 +5,6 @@ extends Control
 func _ready():
 	$Button.grab_focus()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_button_pressed():
-	SceneTransition.change_scene_to_file('res://scenes/world.tscn')
+	SceneTransition.change_scene_to_file("res://scenes/world.tscn")

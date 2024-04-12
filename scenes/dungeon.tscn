@@ -110,7 +110,7 @@ size = Vector2(16, 16)
 [node name="Dungeon" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-208, -160)
+position = Vector2(-144, -176)
 tile_set = ExtResource("1_4su6i")
 format = 2
 layer_0/name = "Ground"
@@ -127,7 +127,7 @@ position = Vector2(896, 196)
 shape = SubResource("RectangleShape2D_wv66r")
 
 [node name="Player" type="Area2D" parent="."]
-position = Vector2(520, 296)
+position = Vector2(584, 280)
 script = ExtResource("2_qiqna")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -150,7 +150,7 @@ libraries = {
 }
 
 [node name="Wizard" type="StaticBody2D" parent="." groups=["npc"]]
-position = Vector2(472, 168)
+position = Vector2(536, 152)
 script = ExtResource("5_8js63")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wizard"]
