@@ -34,6 +34,7 @@ func setup_enemy():
 	enemy_scene = Scene.WIZARD if PlayerState.engaging_boss else random_enemy()
 	enemy = load(SCENES[enemy_scene]).instantiate()
 	add_child(enemy)
+	$AudioManager/Intro.play()
 	enemy.get_node("AnimationPlayer").play(INTRO_ANIMATION)
 
 
@@ -45,6 +46,13 @@ func random_enemy():
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept") and $Panel/TextBox.visible:
 		emit_signal("text_box_closed")
+	if Input.is_action_just_pressed("ui_accept"):
+		$AudioManager/MenuClick.play()
+	if (
+		!$Panel/TextBox.visible
+		and (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"))
+	):
+		$AudioManager/MenuSelect.play()
 
 
 # Changes the current scene to the world scene when the run button is pressed
@@ -55,6 +63,8 @@ func _on_run_pressed():
 	if chance == 1 and enemy_scene != Scene.WIZARD:
 		show_text_box("You managed to escape!")
 		await self.text_box_closed
+		$AudioManager/Runaway.play()
+		await $AudioManager/Runaway.finished
 		PlayerState.engaging_boss = false
 		SceneTransition.change_scene_to_file(SCENES[Scene.DUNGEON])
 	else:
@@ -70,6 +80,7 @@ func _on_attack_pressed():
 	enemy.health = max(0, enemy.health - player_damage)
 	update_health_bar($EnemyHealth/ProgressBar, enemy)
 	enemy.get_node("AnimationPlayer").play("takes_damage")
+	$AudioManager/EnemyHit.play()
 	show_text_box("You dealt " + str(player_damage) + " damage!")
 	await self.text_box_closed
 	if enemy.health == 0:
@@ -91,6 +102,7 @@ func enemy_turn(defending: bool = false):
 	var damage_taken = enemy_damage / 2 if defending else enemy_damage
 	PlayerState.health = max(0, PlayerState.health - damage_taken)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
+	$AudioManager/PlayerHit.play()
 	show_text_box("You took " + str(damage_taken) + " damage!")
 	await self.text_box_closed
 	if PlayerState.health == 0:
@@ -103,6 +115,8 @@ func player_death():
 	show_text_box("You were defeated!")
 	await self.text_box_closed
 	show_text_box("GAME OVER!")
+	$AudioManager/PlayerDeath.play()
+	await $AudioManager/PlayerDeath.finished
 	await self.text_box_closed
 	PlayerState.engaging_boss = false
 	PlayerState.health = 1
@@ -114,6 +128,7 @@ func player_death():
 
 func enemy_death():
 	enemy.get_node("AnimationPlayer").play("death")
+	$AudioManager/EnemyDeath.play()
 	await enemy.get_node("AnimationPlayer").animation_finished
 	show_text_box("You defeated " + enemy.name + "!")
 	await self.text_box_closed
@@ -121,6 +136,7 @@ func enemy_death():
 	await self.text_box_closed
 	if PlayerState.will_level_up(enemy.experience_earned):
 		show_text_box("You leveled up!")
+		$AudioManager/LevelUp.play()
 		await self.text_box_closed
 	if enemy_scene == Scene.WIZARD:
 		PlayerState.engaging_boss = false

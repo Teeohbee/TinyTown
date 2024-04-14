@@ -1,7 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhkd51qijugrl"]
+[gd_scene load_steps=19 format=3 uid="uid://bhkd51qijugrl"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_rnys3"]
 [ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_11f3l"]
+[ext_resource type="AudioStream" uid="uid://cuajb438kc0wt" path="res://assets/audio/enemy_hit.ogg" id="3_r3y4e"]
+[ext_resource type="AudioStream" uid="uid://cjfukcy6nq64d" path="res://assets/audio/player_hit.ogg" id="4_brne3"]
+[ext_resource type="AudioStream" uid="uid://cex2s0yypffe4" path="res://assets/audio/enemy_death.ogg" id="5_c08tj"]
+[ext_resource type="AudioStream" uid="uid://dym4jfacj0eyd" path="res://assets/audio/menu_click.ogg" id="6_hd7yl"]
+[ext_resource type="AudioStream" uid="uid://dvw3mt6f1mueg" path="res://assets/audio/intro.ogg" id="7_54550"]
+[ext_resource type="AudioStream" uid="uid://pp8bjp1f3301" path="res://assets/audio/menu_select.ogg" id="8_42yko"]
+[ext_resource type="AudioStream" uid="uid://xpurcm50f088" path="res://assets/audio/runaway.ogg" id="9_st7bg"]
+[ext_resource type="AudioStream" uid="uid://108lv45isy7h" path="res://assets/audio/level_up.ogg" id="10_1n23b"]
+[ext_resource type="AudioStream" uid="uid://ci86g1bnekrnm" path="res://assets/audio/player_death.ogg" id="11_mch5w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
 bg_color = Color(0, 0, 0, 1)
@@ -249,6 +258,36 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_11f3l")
 theme_override_font_sizes/font_size = 48
 text = "HP: 6/10"
+
+[node name="AudioManager" type="Node" parent="."]
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("3_r3y4e")
+
+[node name="PlayerHit" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("4_brne3")
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("5_c08tj")
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("6_hd7yl")
+
+[node name="Intro" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("7_54550")
+pitch_scale = 2.0
+
+[node name="MenuSelect" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("8_42yko")
+
+[node name="Runaway" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("9_st7bg")
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("10_1n23b")
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("11_mch5w")
 
 [connection signal="pressed" from="Panel/ActionButtons/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Panel/ActionButtons/Defend" to="." method="_on_defend_pressed"]
