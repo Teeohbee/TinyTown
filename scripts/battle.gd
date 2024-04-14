@@ -44,14 +44,15 @@ func random_enemy():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept") and $Panel/TextBox.visible:
+	handle_input()
+
+
+func handle_input():
+	if pressed("ui_accept") and $Panel/TextBox.visible:
 		emit_signal("text_box_closed")
-	if Input.is_action_just_pressed("ui_accept"):
+	if pressed("ui_accept"):
 		$AudioManager/MenuClick.play()
-	if (
-		!$Panel/TextBox.visible
-		and (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"))
-	):
+	if !$Panel/TextBox.visible and (pressed("ui_left") or pressed("ui_right")):
 		$AudioManager/MenuSelect.play()
 
 
@@ -164,3 +165,7 @@ func update_health_bar(health_bar, character):
 	health_bar.get_node("Label").text = (
 		"HP: " + str(character.health) + "/" + str(character.max_health)
 	)
+
+
+func pressed(input):
+	return Input.is_action_just_pressed(input)
