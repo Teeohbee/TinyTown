@@ -2,20 +2,20 @@ extends Node
 
 enum QuestStatuses { NOT_STARTED, ACCEPTED, COMPLETED }
 
-@export var reset_position = Vector2(584, 280)
-@export var last_position = {}
-@export var health = 10
-@export var max_health = 10
-@export var min_damage = 4
-@export var max_damage = 6
-@export var quest_status = QuestStatuses.NOT_STARTED
-@export var level = 1
-@export var experience = 0
-@export var experience_required = 10
-@export var kill_count = 0
-@export var engaging_boss = false
-@export var sword_upgrade = false
-@export var bow_upgrade = false
+var reset_position = Vector2(584, 280)
+var last_position = {}
+var health = 15
+var max_health = 15
+var min_damage = 4
+var max_damage = 6
+var quest_status = QuestStatuses.NOT_STARTED
+var level = 1
+var experience = 0
+var experience_required = 10
+var kill_count = 0
+var engaging_boss = false
+var sword_upgrade = false
+var bow_upgrade = false
 
 
 func damage():
@@ -33,9 +33,10 @@ func will_level_up(experience_earned):
 func gain_experience(experience_earned):
 	experience += experience_earned
 	while experience >= experience_required:
-		max_health = max_health + 5
+		max_health += 5
+		health += 5
 		level += 1
-		experience = experience - experience_required
+		experience -= experience_required
 		experience_required = roundi(experience_required * 1.5)
 
 
