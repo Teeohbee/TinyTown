@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://be63leund0pj2"]
+[gd_scene load_steps=19 format=3 uid="uid://be63leund0pj2"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_dxdsk"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_lgq7e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/maiden.gd" id="6_bir44"]
 [ext_resource type="Script" path="res://scripts/blacksmith.gd" id="6_gxb6d"]
 [ext_resource type="Script" path="res://scripts/archer.gd" id="7_u0tew"]
+[ext_resource type="AudioStream" uid="uid://bdh0e7kdhflc2" path="res://assets/audio/bump.ogg" id="18_y1g44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ja7i"]
 size = Vector2(32, 8)
@@ -46,6 +47,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_y1g44")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_y60qk"]
 resource_name = "bump_ui_left"
@@ -63,6 +79,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_y1g44")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_fnshl"]
 resource_name = "bump_ui_right"
@@ -80,6 +111,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_y1g44")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_rt30o"]
 resource_name = "bump_up"
@@ -97,6 +143,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_y1g44")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fgia8"]
 _data = {
@@ -152,6 +213,8 @@ target_position = Vector2(16, 0)
 libraries = {
 "": SubResource("AnimationLibrary_fgia8")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
 
 [node name="NPCs" type="Node" parent="."]
 
