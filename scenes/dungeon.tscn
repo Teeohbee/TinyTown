@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwevdknc1tvjs"]
+[gd_scene load_steps=17 format=3 uid="uid://cwevdknc1tvjs"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_4su6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_qiqna"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bm2ho1y5wwh02" path="res://scenes/camera.tscn" id="4_l5kht"]
 [ext_resource type="Script" path="res://scripts/wizard.gd" id="5_8js63"]
 [ext_resource type="AudioStream" uid="uid://bdh0e7kdhflc2" path="res://assets/audio/bump.ogg" id="5_idlcu"]
+[ext_resource type="AudioStream" uid="uid://dym4jfacj0eyd" path="res://assets/audio/menu_click.ogg" id="6_1ncfk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wv66r"]
 size = Vector2(32, 8)
@@ -47,7 +48,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("AnimationAudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -79,7 +80,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("AnimationAudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +112,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("AnimationAudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -143,7 +144,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/path = NodePath("AnimationAudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,7 +211,10 @@ libraries = {
 "": SubResource("AnimationLibrary_fgia8")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+[node name="AnimationAudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("6_1ncfk")
 
 [node name="Wizard" type="StaticBody2D" parent="." groups=["npc"]]
 position = Vector2(536, 152)

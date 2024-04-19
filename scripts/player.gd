@@ -36,6 +36,7 @@ func _process(_delta):
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
 		PlayerState.last_position[self.get_parent().name] = position
 	if Input.is_action_just_pressed("ui_accept") and $Camera/CanvasLayer/DialoguePanel.visible:
+		$MenuClick.play()
 		emit_signal("text_box_closed")
 
 
