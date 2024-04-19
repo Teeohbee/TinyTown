@@ -1,8 +1,40 @@
 extends Camera2D
 
+var paused = false
+var flash = false
 @onready
 var sword_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/SwordUpgrade
 @onready var bow_upgrade_icon = $CanvasLayer/CharacterPanel/VBoxContainer/HBoxContainer/BowUpgrade
+
+
+func _process(delta):
+	handle_pause()
+	if paused:
+		flash_text(delta)
+
+
+# Handles the pause action
+func handle_pause():
+	if Input.is_action_just_pressed("ui_cancel"):
+		paused = !paused
+		get_tree().paused = paused
+		$CanvasLayer/PauseLabel.visible = paused
+		if paused:
+			$CanvasLayer/PauseLabel.modulate.a = 1
+			flash = true
+
+
+# Flashes the "Paused" text
+func flash_text(delta):
+	var speed = 1
+	if flash:
+		$CanvasLayer/PauseLabel.modulate.a -= delta * speed
+		if $CanvasLayer/PauseLabel.modulate.a <= 0:
+			flash = false
+	else:
+		$CanvasLayer/PauseLabel.modulate.a += delta * speed
+		if $CanvasLayer/PauseLabel.modulate.a >= 1:
+			flash = true
 
 
 func update_player_hud():
