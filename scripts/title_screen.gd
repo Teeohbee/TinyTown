@@ -7,4 +7,6 @@ func _ready():
 
 
 func _on_button_pressed():
+	$Button/StartGame.play()
+	await $Button/StartGame.finished
 	SceneTransition.change_scene_to_file("res://scenes/world.tscn")

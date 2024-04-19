@@ -117,17 +117,20 @@ func _on_dungeon_exit_area_entered(_area):
 
 func _on_maiden_player_healed():
 	await self.text_box_closed
+	$Heal.play()
 	PlayerState.health = PlayerState.max_health
 	$Camera.update_player_hud()
 
 
 func _on_blacksmith_gain_sword_upgrade():
 	await self.text_box_closed
+	$ObtainUpgrade.play()
 	PlayerState.apply_sword_upgrade()
 	$Camera.update_player_hud()
 
 
 func _on_archer_gain_bow_upgrade():
 	await self.text_box_closed
+	$ObtainUpgrade.play()
 	PlayerState.apply_bow_upgrade()
 	$Camera.update_player_hud()

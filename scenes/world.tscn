@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://be63leund0pj2"]
+[gd_scene load_steps=22 format=3 uid="uid://be63leund0pj2"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_dxdsk"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_lgq7e"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://scripts/maiden.gd" id="6_bir44"]
 [ext_resource type="Script" path="res://scripts/blacksmith.gd" id="6_gxb6d"]
 [ext_resource type="AudioStream" uid="uid://dym4jfacj0eyd" path="res://assets/audio/menu_click.ogg" id="6_n0302"]
+[ext_resource type="AudioStream" uid="uid://3fq5pl1ovigl" path="res://assets/audio/obtain_upgrade.ogg" id="7_fn6cu"]
 [ext_resource type="Script" path="res://scripts/archer.gd" id="7_u0tew"]
+[ext_resource type="AudioStream" uid="uid://dhi6nf6lqdndc" path="res://assets/audio/heal.ogg" id="8_dddiu"]
 [ext_resource type="AudioStream" uid="uid://bdh0e7kdhflc2" path="res://assets/audio/bump.ogg" id="18_y1g44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ja7i"]
@@ -219,6 +221,12 @@ libraries = {
 
 [node name="MenuClick" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_n0302")
+
+[node name="ObtainUpgrade" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("7_fn6cu")
+
+[node name="Heal" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("8_dddiu")
 
 [node name="NPCs" type="Node" parent="."]
 

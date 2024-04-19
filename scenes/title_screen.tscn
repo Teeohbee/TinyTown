@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1xh6jv275sfm"]
+[gd_scene load_steps=4 format=3 uid="uid://b1xh6jv275sfm"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_wcscb"]
 [ext_resource type="Texture2D" uid="uid://hjy2extmtli6" path="res://assets/title.jpeg" id="2_haxf3"]
+[ext_resource type="AudioStream" uid="uid://dtitx3544bpid" path="res://assets/audio/start_game.ogg" id="3_w614b"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -50,5 +51,8 @@ offset_right = 56.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="StartGame" type="AudioStreamPlayer" parent="Button"]
+stream = ExtResource("3_w614b")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
