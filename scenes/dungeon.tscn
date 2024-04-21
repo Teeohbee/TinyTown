@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwevdknc1tvjs"]
+[gd_scene load_steps=23 format=3 uid="uid://cwevdknc1tvjs"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_4su6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_qiqna"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://bdh0e7kdhflc2" path="res://assets/audio/bump.ogg" id="5_idlcu"]
 [ext_resource type="AudioStream" uid="uid://dym4jfacj0eyd" path="res://assets/audio/menu_click.ogg" id="6_1ncfk"]
 [ext_resource type="AudioStream" uid="uid://3fq5pl1ovigl" path="res://assets/audio/obtain_upgrade.ogg" id="7_kiuq5"]
+[ext_resource type="Script" path="res://scripts/chest.gd" id="9_cmt60"]
+[ext_resource type="Texture2D" uid="uid://yne6jcyrkqln" path="res://assets/tile_0089.png" id="10_rg80n"]
+[ext_resource type="Texture2D" uid="uid://di35jor46h38r" path="res://assets/tile_0090.png" id="11_jvshp"]
+[ext_resource type="Texture2D" uid="uid://b6byquwb7jecr" path="res://assets/tile_0091.png" id="12_nvh38"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wv66r"]
 size = Vector2(32, 8)
@@ -170,6 +174,23 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rosa"]
 size = Vector2(16, 16)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_bs52b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rg80n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jvshp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nvh38")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
 [node name="Dungeon" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -232,4 +253,21 @@ region_rect = Rect2(0, 112, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wizard"]
 shape = SubResource("RectangleShape2D_1rosa")
 
+[node name="Chest" type="StaticBody2D" parent="." groups=["npc"]]
+position = Vector2(168, 72)
+script = ExtResource("9_cmt60")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chest"]
+texture = ExtResource("3_3mgmb")
+region_enabled = true
+region_rect = Rect2(80, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest"]
+shape = SubResource("RectangleShape2D_1rosa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chest"]
+sprite_frames = SubResource("SpriteFrames_bs52b")
+animation = &"open"
+
 [connection signal="area_entered" from="TileMap/DungeonExit" to="Player" method="_on_dungeon_exit_area_entered"]
+[connection signal="gain_armour_upgrade" from="Chest" to="Player" method="_on_chest_gain_armour_upgrade"]

@@ -57,19 +57,20 @@ func interact_with_collider():
 	var collider = ray.get_collider()
 	if not collider.is_in_group("npc"):
 		return
-	$Camera/CanvasLayer/DialoguePanel.show()
-	talking = true
-	for line in collider.dialogue():
-		$Camera/CanvasLayer/DialoguePanel/TextBox.text = line
-		await self.text_box_closed
-	talking = false
-	$Camera/CanvasLayer/DialoguePanel.hide()
-	if collider.name == "Wizard":
-		PlayerState.engaging_boss = true
-		PlayerState.last_position[self.get_parent().name] = position
-		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
-	if collider.name == "Granny" and PlayerState.quest_completed():
-		SceneTransition.change_scene_to_file(END_SCENE_PATH)
+	if collider.dialogue():
+		$Camera/CanvasLayer/DialoguePanel.show()
+		talking = true
+		for line in collider.dialogue():
+			$Camera/CanvasLayer/DialoguePanel/TextBox.text = line
+			await self.text_box_closed
+		talking = false
+		$Camera/CanvasLayer/DialoguePanel.hide()
+		if collider.name == "Wizard":
+			PlayerState.engaging_boss = true
+			PlayerState.last_position[self.get_parent().name] = position
+			SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
+		if collider.name == "Granny" and PlayerState.quest_completed():
+			SceneTransition.change_scene_to_file(END_SCENE_PATH)
 
 
 # Checks if the player will collide in the given direction
@@ -133,4 +134,11 @@ func _on_archer_gain_bow_upgrade():
 	await self.text_box_closed
 	$ObtainUpgrade.play()
 	PlayerState.apply_bow_upgrade()
+	$Camera.update_player_hud()
+
+
+func _on_chest_gain_armour_upgrade():
+	await self.text_box_closed
+	$ObtainUpgrade.play()
+	PlayerState.apply_armour_upgrade()
 	$Camera.update_player_hud()

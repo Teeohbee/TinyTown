@@ -100,11 +100,15 @@ func enemy_turn(defending: bool = false):
 	show_text_box("The " + enemy.name + " attacks you!")
 	await self.text_box_closed
 	var enemy_damage = enemy.damage()
-	var damage_taken = enemy_damage / 2 if defending else enemy_damage
-	PlayerState.health = max(0, PlayerState.health - damage_taken)
+	var adjusted_for_damage_reduction = enemy_damage * (1 - PlayerState.damage_reduction)
+	var adjusted_for_defending = (
+		adjusted_for_damage_reduction / 2 if defending else adjusted_for_damage_reduction
+	)
+	var rounded_damage = floori(adjusted_for_defending)
+	PlayerState.health = max(0, PlayerState.health - rounded_damage)
 	update_health_bar($PlayerHealth/ProgressBar, PlayerState)
 	$AudioManager/PlayerHit.play()
-	show_text_box("You took " + str(damage_taken) + " damage!")
+	show_text_box("You took " + str(rounded_damage) + " damage!")
 	await self.text_box_closed
 	if PlayerState.health == 0:
 		player_death()
