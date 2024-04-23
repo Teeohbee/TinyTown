@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhkd51qijugrl"]
+[gd_scene load_steps=20 format=3 uid="uid://bhkd51qijugrl"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_rnys3"]
 [ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_11f3l"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://xpurcm50f088" path="res://assets/audio/runaway.ogg" id="9_st7bg"]
 [ext_resource type="AudioStream" uid="uid://108lv45isy7h" path="res://assets/audio/level_up.ogg" id="10_1n23b"]
 [ext_resource type="AudioStream" uid="uid://ci86g1bnekrnm" path="res://assets/audio/player_death.ogg" id="11_mch5w"]
+[ext_resource type="AudioStream" uid="uid://c7s4f0igxuh83" path="res://assets/audio/battle.ogg" id="12_msclj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcjq7"]
 bg_color = Color(0, 0, 0, 1)
@@ -288,6 +289,11 @@ stream = ExtResource("10_1n23b")
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("11_mch5w")
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("12_msclj")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="Panel/ActionButtons/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Panel/ActionButtons/Defend" to="." method="_on_defend_pressed"]

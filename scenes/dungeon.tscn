@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwevdknc1tvjs"]
+[gd_scene load_steps=24 format=3 uid="uid://cwevdknc1tvjs"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_4su6i"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_qiqna"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://yne6jcyrkqln" path="res://assets/tile_0089.png" id="10_rg80n"]
 [ext_resource type="Texture2D" uid="uid://di35jor46h38r" path="res://assets/tile_0090.png" id="11_jvshp"]
 [ext_resource type="Texture2D" uid="uid://b6byquwb7jecr" path="res://assets/tile_0091.png" id="12_nvh38"]
+[ext_resource type="AudioStream" uid="uid://dkwxx5qoh41g1" path="res://assets/audio/dungeon.ogg" id="13_faay1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wv66r"]
 size = Vector2(32, 8)
@@ -268,6 +269,11 @@ shape = SubResource("RectangleShape2D_1rosa")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chest"]
 sprite_frames = SubResource("SpriteFrames_bs52b")
 animation = &"open"
+
+[node name="DungeonMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_faay1")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="area_entered" from="TileMap/DungeonExit" to="Player" method="_on_dungeon_exit_area_entered"]
 [connection signal="gain_armour_upgrade" from="Chest" to="Player" method="_on_chest_gain_armour_upgrade"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://8b15ngg43hnx"]
+[gd_scene load_steps=4 format=3 uid="uid://8b15ngg43hnx"]
 
 [ext_resource type="Texture2D" uid="uid://dguyfcftpjqch" path="res://assets/reward.jpeg" id="1_had2t"]
 [ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_wg03w"]
+[ext_resource type="AudioStream" uid="uid://c7s4f0igxuh83" path="res://assets/audio/battle.ogg" id="3_23fr3"]
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -75,9 +76,15 @@ text = "
 
 CREDITS
 programming - toby
+audio - joseph abraham
 assets - kenney.nl
-audio - Hunter Audio Production
+SFX - Hunter Audio Production
 artwork - copilot designer
 engine - godot"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_23fr3")
+volume_db = -10.0
+autoplay = true
