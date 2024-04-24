@@ -57,10 +57,11 @@ func interact_with_collider():
 	var collider = ray.get_collider()
 	if not collider.is_in_group("npc"):
 		return
-	if collider.dialogue():
+	var dialogue =  collider.dialogue()
+	if dialogue:
 		$Camera/CanvasLayer/DialoguePanel.show()
 		talking = true
-		for line in collider.dialogue():
+		for line in dialogue:
 			$Camera/CanvasLayer/DialoguePanel/TextBox.text = line
 			await self.text_box_closed
 		talking = false
