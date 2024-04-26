@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://be63leund0pj2"]
+[gd_scene load_steps=24 format=3 uid="uid://be63leund0pj2"]
 
 [ext_resource type="TileSet" uid="uid://bg4uure4klx0u" path="res://resources/tileset.tres" id="1_dxdsk"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_lgq7e"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://3fq5pl1ovigl" path="res://assets/audio/obtain_upgrade.ogg" id="7_fn6cu"]
 [ext_resource type="Script" path="res://scripts/archer.gd" id="7_u0tew"]
 [ext_resource type="AudioStream" uid="uid://dhi6nf6lqdndc" path="res://assets/audio/heal.ogg" id="8_dddiu"]
+[ext_resource type="AudioStream" uid="uid://c0lanwe6d4npd" path="res://assets/audio/town.ogg" id="13_aw54c"]
+[ext_resource type="AudioStream" uid="uid://jro0xwg013qi" path="res://assets/audio/walking.ogg" id="14_3x70m"]
 [ext_resource type="AudioStream" uid="uid://bdh0e7kdhflc2" path="res://assets/audio/bump.ogg" id="18_y1g44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ja7i"]
@@ -228,6 +230,10 @@ stream = ExtResource("7_fn6cu")
 [node name="Heal" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("8_dddiu")
 
+[node name="Walking" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("14_3x70m")
+volume_db = -10.0
+
 [node name="NPCs" type="Node" parent="."]
 
 [node name="Granny" type="StaticBody2D" parent="NPCs" groups=["npc"]]
@@ -277,6 +283,11 @@ region_rect = Rect2(48, 128, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Maiden"]
 shape = SubResource("RectangleShape2D_8kmt6")
+
+[node name="TownMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_aw54c")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="area_entered" from="TileMap/DungeonEntrance" to="Player" method="_on_dungeon_entrance_area_entered"]
 [connection signal="gain_sword_upgrade" from="NPCs/Blacksmith" to="Player" method="_on_blacksmith_gain_sword_upgrade"]

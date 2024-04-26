@@ -87,7 +87,6 @@ func move(dir):
 	play_tween(tween, dir)
 	moving = true
 	await tween.finished
-	#moving = false
 	var chance = randi_range(0, 7)
 	if self.get_parent().name == "Dungeon" and chance == 0:
 		SceneTransition.change_scene_to_file(BATTLE_SCENE_PATH)
@@ -98,6 +97,7 @@ func move(dir):
 
 # Plays the tween for the player movement
 func play_tween(tween, dir):
+	$Walking.play()
 	(
 		tween
 		. tween_property(
