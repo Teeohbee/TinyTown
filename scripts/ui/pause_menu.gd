@@ -24,7 +24,7 @@ var opened_on_frame = 0
 
 func _ready():
 	for button in section_buttons.get_children():
-		var section = button.name
+		var section = str(button.name)
 		button.pressed.connect(func(): enter_section(section))
 		button.focus_entered.connect(func(): on_section_focused(section))
 	options_menu.closed.connect(leave_section)
@@ -167,8 +167,8 @@ func add_button_row(text, description, on_pressed, icon = null):
 	var button = Button.new()
 	button.text = text
 	button.icon = icon
-	button.expand_icon = false
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.expand_icon = true
 	button.add_theme_constant_override("icon_max_width", 40)
 	button.focus_entered.connect(func():
 		Audio.play_sound("menu_select")

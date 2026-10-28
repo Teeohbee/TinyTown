@@ -15,6 +15,7 @@ const DIRECTIONS = {
 
 var moving = false
 var busy = false
+var leaving = false
 var facing = Vector2.DOWN
 
 @onready var ray = $RayCast2D
@@ -161,7 +162,7 @@ func talk_to(npc):
 	busy = true
 	await npc.interact(self)
 	await get_tree().process_frame
-	busy = false
+	busy = leaving
 	hud.refresh()
 	get_tree().call_group("npc", "refresh_marker")
 
@@ -170,6 +171,9 @@ func talk_to(npc):
 
 
 func start_battle(enemy_id, backdrop = ""):
+	if leaving:
+		return
+	leaving = true
 	busy = true
 	PlayerState.battle_enemy_id = enemy_id
 	var area = current_area()
@@ -191,9 +195,11 @@ func flash_for_battle():
 	await tween.finished
 
 
+# Can be called mid-conversation (doors), so it checks "leaving" rather than "busy".
 func warp_to(scene_path, spawn_name):
-	if busy:
+	if leaving:
 		return
+	leaving = true
 	busy = true
 	PlayerState.next_spawn_name = spawn_name
 	PlayerState.saved_position = null

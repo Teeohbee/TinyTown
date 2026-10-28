@@ -179,9 +179,9 @@ func player_turn():
 
 func wait_for_command():
 	command_panel.show()
-	waiting_for_command = true
 	await get_tree().process_frame
 	commands.get_node("Attack").grab_focus()
+	waiting_for_command = true
 	var choice = await command_chosen
 	waiting_for_command = false
 	command_panel.hide()
@@ -249,6 +249,7 @@ func add_submenu_button(text, description, on_pressed, icon = null):
 	button.text = text
 	button.icon = icon
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.expand_icon = true
 	button.add_theme_constant_override("icon_max_width", 40)
 	button.pressed.connect(func():
 		Audio.play_sound("menu_click")
