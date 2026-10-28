@@ -20,6 +20,11 @@ func interact(_player):
 	await Dialogue.say(lines, speaker_name)
 
 
+# Story beats broadcast to every NPC with get_tree().call_group("npc", ...)
+func on_pip_freed():
+	pass
+
+
 # Override to show a bouncing "!" when this NPC has something new to say.
 func has_news():
 	return false
