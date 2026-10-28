@@ -1,37 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://8b15ngg43hnx"]
+[gd_scene load_steps=3 format=3 uid="uid://8b15ngg43hnx"]
 
 [ext_resource type="Texture2D" uid="uid://dguyfcftpjqch" path="res://assets/reward.jpeg" id="1_had2t"]
-[ext_resource type="FontFile" uid="uid://cy7jd4p2pgj8f" path="res://assets/monogram-extended.ttf" id="2_wg03w"]
-[ext_resource type="AudioStream" uid="uid://c7s4f0igxuh83" path="res://assets/audio/battle.ogg" id="3_23fr3"]
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="2_end"]
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+script = ExtResource("2_end")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_top = -400.0
+offset_right = 800.0
+offset_bottom = 400.0
 grow_vertical = 2
 texture = ExtResource("1_had2t")
 
-[node name="Control" type="Control" parent="."]
-custom_minimum_size = Vector2(56, 0)
-layout_mode = 1
+[node name="Clip" type="Control" parent="."]
+clip_contents = true
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -40,51 +36,62 @@ offset_left = -480.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Scroll" type="VBoxContainer" parent="Clip"]
+offset_top = 800.0
+offset_right = 480.0
+offset_bottom = 2400.0
+theme_override_constants/separation = 12
 
-[node name="End" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wg03w")
+[node name="End" type="Label" parent="Clip/Scroll"]
 theme_override_font_sizes/font_size = 100
-text = "
-THE END
-"
+text = "THE END"
 horizontal_alignment = 1
 
-[node name="Thanks" type="Label" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(56, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wg03w")
-theme_override_font_sizes/font_size = 100
-text = "
-Thanks for playing"
+[node name="Thanks" type="Label" parent="Clip/Scroll"]
+theme_override_font_sizes/font_size = 64
+text = "Thanks for playing"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Credits" type="Label" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(56, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wg03w")
+[node name="Stats" type="Label" parent="Clip/Scroll"]
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 theme_override_font_sizes/font_size = 40
-text = "
+text = "Stats"
+horizontal_alignment = 1
+autowrap_mode = 2
 
-CREDITS
+[node name="Credits" type="Label" parent="Clip/Scroll"]
+theme_override_font_sizes/font_size = 40
+text = "CREDITS
+
 programming - toby
+chapter two & overhaul - toby & claude
 audio - joseph abraham
 assets - kenney.nl
 SFX - Hunter Audio Production
 artwork - copilot designer
+font - monogram by datagoblin
 engine - godot"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_23fr3")
-volume_db = -10.0
-autoplay = true
+[node name="PostGame" type="Label" parent="Clip/Scroll"]
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 36
+text = "Your game is saved. Continue from the title screen to keep exploring."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Prompt" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -60.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 36
+text = "Press A / Enter"
+horizontal_alignment = 1
