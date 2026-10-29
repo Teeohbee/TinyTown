@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue_box.gd" id="1_script"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+process_mode = 3
+layer = 50
+script = ExtResource("1_script")
+
+[node name="Box" type="Panel" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -216.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="Label" parent="Box"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 24.0
+offset_right = -36.0
+offset_bottom = -24.0
+theme_override_font_sizes/font_size = 56
+text = "Hello, you look like a strapping lad"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NextArrow" type="Label" parent="Box"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -56.0
+offset_right = -20.0
+offset_bottom = -8.0
+text = "v"
+horizontal_alignment = 1
+
+[node name="SpeakerPanel" type="PanelContainer" parent="Box"]
+offset_left = 24.0
+offset_top = -52.0
+offset_right = 224.0
+offset_bottom = 4.0
+
+[node name="SpeakerName" type="Label" parent="Box/SpeakerPanel"]
+text = "Granny"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choices" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -440.0
+offset_right = -16.0
+offset_bottom = -232.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ChoiceList" type="VBoxContainer" parent="Choices"]
+alignment = 1

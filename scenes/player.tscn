@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://vyj0k0g0aq23" path="res://assets/dungeon_tilemap.png" id="2_atlas"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="4_pause"]
+
+[sub_resource type="RectangleShape2D" id="PlayerShape"]
+size = Vector2(14, 14)
+
+[sub_resource type="Gradient" id="LanternGradient"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.55, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="LanternTexture"]
+gradient = SubResource("LanternGradient")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Player" type="Area2D"]
+z_index = 2
+script = ExtResource("1_player")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.22)
+polygon = PackedVector2Array(-5, 6, -2, 4.5, 2, 4.5, 5, 6, 2, 7.5, -2, 7.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(16, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("PlayerShape")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+
+[node name="Lantern" type="PointLight2D" parent="."]
+enabled = false
+color = Color(1, 0.86, 0.6, 1)
+energy = 1.3
+texture = SubResource("LanternTexture")
+texture_scale = 0.9
+
+[node name="Camera" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_pause")]
