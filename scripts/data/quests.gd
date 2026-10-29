@@ -22,7 +22,7 @@ const QUESTS = {
 			"Granny's grandson Pip hasn't come home from the Autumn Woods. Use the Gate Key on the West Gate.",
 			"Bram the woodcutter says Pip followed a hooded stranger into the Old Mine. Take his lantern and find him.",
 			"The Mole King is beaten. His Iron Key opens the deep gate of the mine.",
-			"Mordrin is beaten and Pip is free! Let Granny know he's safe.",
+			"Mordrin is beaten! Free Pip from his cell, then let Granny know he's safe.",
 			"Pip is home safe. Granny is over the moon.",
 		],
 	},

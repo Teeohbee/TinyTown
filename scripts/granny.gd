@@ -47,7 +47,8 @@ const AFTER_EVERYTHING_DIALOGUE = [
 func has_news():
 	var bees = PlayerState.quest_stage("bees")
 	var apprentice = PlayerState.quest_stage("apprentice")
-	return bees == 0 or bees == 2 or (bees == 3 and apprentice == 0) or apprentice == 4
+	var pip_home = apprentice == 4 and PlayerState.has_flag("pip_freed")
+	return bees == 0 or bees == 2 or (bees == 3 and apprentice == 0) or pip_home
 
 
 func interact(_player):
@@ -66,7 +67,7 @@ func interact(_player):
 		await ask_about_pip()
 	elif apprentice == 0:
 		await ask_about_pip()
-	elif apprentice < 4:
+	elif apprentice < 4 or not PlayerState.has_flag("pip_freed"):
 		await Dialogue.say(PIP_WAITING_DIALOGUE, speaker_name)
 	elif apprentice == 4:
 		await Dialogue.say(PIP_RETURNED_DIALOGUE, speaker_name)
